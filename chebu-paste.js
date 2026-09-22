@@ -7,24 +7,73 @@ function rows(t){return t.trim().split(/\n/).map(function(l){return l.split('","
 function load(){return M?Promise.resolve(M):fetch(U).then(function(r){return r.text()}).then(function(t){var a=rows(t),G=[],V=[],i,c,d;for(i=1;i<a.length;i++){c=a[i];if(!c[3])continue;d={n:+c[2],a:c[3],g:+c[4]||350,k:+c[5]||0};((c[1]||"").toLowerCase().indexOf("veg")==0?V:G).push(d)}M={w:a[1][0],G:G,V:V};return M})}
 function tx(e){return(e.innerText||"").replace(/\s+/g," ").trim()}
 function find(re,s){var a=document.querySelectorAll(s),i,n;for(i=0;i<a.length;i++){n=a[i];while(n&&n.tagName!="FORM"){if(/option|field/i.test(n.className||"")&&re.test(tx(n)))return{el:a[i],w:n};n=n.parentElement}}}
-function cap(s){if(!s||/^l|^please/i.test(s.value))return s?0:5;var m=s.value.match(/\d+/);return m?+m[0]:5}
+function cap(s){
+ /* Set size is the "VĒLOS KOMPLEKTU" radios ("5 porcijas" / "7 porcijas").
+    A checked radio wins. Nothing checked yet keeps the 5-pack default.
+    The old skaits <select> is only a fallback for products that still have it. */
+ var root=document.querySelector(".details-product-options")||document,a=root.querySelectorAll("input[type=radio]"),i,m,seen=0;
+ for(i=0;i<a.length;i++){
+  if(!/porcij/i.test(a[i].value||""))continue;
+  seen=1;
+  if(a[i].checked){m=a[i].value.match(/\d+/);return m?+m[0]:5}
+ }
+ if(seen)return 5;
+ if(!s||/^l|^please/i.test(s.value))return s?0:5;
+ m=s.value.match(/\d+/);return m?+m[0]:5
+}
 function lim(){var n=+(S.qty&&S.qty.value)||1;return cap(S.sel)*(n>0?n:1)}
+function kom(){return find(/KOMPLEKT/,"input[type=radio]")}
+function watchKom(){
+ /* Re-bind after Ecwid redraws the option. dataset flag avoids stacked listeners. */
+ var k=kom(),a,i;
+ if(!k)return;
+ a=k.w.querySelectorAll("input[type=radio]");
+ for(i=0;i<a.length;i++){
+  if(a[i].dataset.cbk)continue;
+  a[i].dataset.cbk="1";
+  a[i].addEventListener("change",trim)
+ }
+}
+function lift(){
+ /* Keep the set-size radios directly above the menu.
+    MIX lists NUMURUS first, so inserting the picker after that field
+    used to push "VĒLOS KOMPLEKTU" down under the dishes. */
+ var k=kom();
+ if(!k||!R||!R.isConnected||k.w.contains(R))return;
+ if(R.previousElementSibling!=k.w)R.before(k.w)
+}
 function trim(){var i;if(!S)return;S.m=lim();while(S.m&&sum()>S.m){i=S.items.length;while(i--)if(S.c[S.items[i].k]){S.c[S.items[i].k]--;break}}paint()}
 function setQty(q,n){var d;if(n<1)n=1;d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value");if(d&&d.set)d.set.call(q,String(n));else q.value=String(n);q.dispatchEvent(new Event("input",{bubbles:1}));q.dispatchEvent(new Event("change",{bubbles:1}))}
 function place(){var q=document.querySelector("[name=ec-qty]"),n,w,ui,lab,num,b;if(!q||!R||!S)return;n=q.closest("[class$=__qty]")||q.parentElement;S.qty=q;w=R.querySelector(".w");if(w&&w.nextElementSibling!=n)w.after(n);q.oninput=q.onchange=trim;q.readOnly=1;q.tabIndex=-1;q.setAttribute("inputmode","none");lab=n.querySelector("label");if(lab)lab.htmlFor="";if(!n.querySelector(".qs")){ui=document.createElement("div");ui.className="qs";ui.innerHTML='<div class=st><button type=button data-q=m>−</button><b class=qn>1</b><button type=button data-q=p>+</button></div>';n.appendChild(ui);ui.onclick=function(e){var b=e.target.closest("button"),v,show;if(!b||!b.dataset.q)return;e.preventDefault();e.stopPropagation();v=+(q.value)||1;setQty(q,b.dataset.q=="p"?v+1:v-1);show=n.querySelector(".qs .qn");if(show)show.textContent=q.value;b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}}num=n.querySelector(".qs .qn");if(num)num.textContent=String(+(q.value)||1);b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}
 function setV(el,v){Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,"value").set.call(el,v);el.dispatchEvent(new Event("input",{bubbles:1}));el.dispatchEvent(new Event("change",{bubbles:1}))}
 function bag(a,suf,g){return a.map(function(d){return{k:g+d.n,c:d.n+suf,g:g,d:d}})}
-function items(k){return k=="v"?bag(M.V,"V","v"):k=="m"?bag(M.G,"G","g").concat(bag(M.V,"V","v")):bag(M.G,"G","g")}
+function items(k){
+ /* Meat and vegetarian codes are plain numbers (1 2 3).
+    Mix keeps G and V so a meat 1 and a veg 1 stay distinct. */
+ return k=="v"?bag(M.V,"","v"):k=="m"?bag(M.G,"G","g").concat(bag(M.V,"V","v")):bag(M.G,"","g")
+}
 function sum(){var n=0,k;for(k in S.c)n+=S.c[k];return n}
 function card(it){var d=it.d;return '<div class=d data-key='+it.k+'><b class=nr>'+it.c+'</b><div class=bd><p class=nm>'+d.a.replace(/&/g,"&amp;")+'</p><p class=mt>~'+d.g+'g · '+d.k+'kcal</p></div><div class=st><button type=button data-act=m>−</button><b class=qn>0</b><button type=button data-act=p>+</button></div></div>'}
 function full(){return !!(S&&S.m&&sum()==S.m)}
-function buyRoot(){var q=S&&S.qty||document.querySelector("[name=ec-qty]");return q?q.closest(".details-product-purchase")||q.closest("form")||q.parentElement:null}
+function buyRoot(){
+ /* The quantity field is moved into the picker, so it no longer sits inside
+    the purchase block. Look the block up on its own, or the sidebar button. */
+ var box=document.querySelector(".product-details .details-product-purchase");
+ if(box)return box;
+ var btns=document.querySelectorAll("button"),i,b;
+ for(i=0;i<btns.length;i++){
+  b=btns[i];
+  if(b.closest(".cb,.qs"))continue;
+  if(/grozā/i.test(tx(b)))return b.closest(".product-details__sidebar")||b.parentElement
+ }
+ return null
+}
 function stopBuy(e){var n,root,bag;if(!S)return;root=buyRoot();if(!root)return;n=e.target.closest(".details-product-purchase__add-to-bag,button,a");if(!n||!root.contains(n)||n.closest(".cb,.qs"))return;bag=n.closest(".details-product-purchase__add-to-bag");if(!bag&&!/grozā/i.test(tx(n)))return;if(full())return;e.preventDefault();e.stopImmediatePropagation()}
 if(!window.__chebuBuy){window.__chebuBuy=1;["pointerdown","mousedown","click"].forEach(function(ev){document.addEventListener(ev,stopBuy,true)})}
 function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=root?root.querySelectorAll("button,.details-product-purchase__add-to-bag"):[];q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q("h2").textContent="Izvēlies savas "+(m||0)+" porcijas";q(".x").textContent=u<m?"Vēl "+(m-u):"Gatavs";S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=!ok}}}
 function wk(w){w=w||"";return /ēdienkarte piegādei/i.test(w)?w:"Ēdienkarte piegādei "+w}
-function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;place();trim()}
-function boot(){var s=document.getElementById("cb-css");if(s)document.documentElement.appendChild(s);var h=location.href.match(/-p(\d+)|pid=(\d+)/),k=P[h&&(h[1]||h[2])];if(!k)return;if(document.querySelector(".cb")){place();if(S&&lim()!=S.m)trim();else if(S)paint();return}if(B||!find(/NUMURUS/,"textarea"))return;B=1;load().then(function(){B=0;mount(k)}).catch(function(){B=0})}
+function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;watchKom();lift();place();trim()}
+function boot(){var s=document.getElementById("cb-css");if(s)document.documentElement.appendChild(s);var h=location.href.match(/-p(\d+)|pid=(\d+)/),k=P[h&&(h[1]||h[2])];if(!k)return;if(document.querySelector(".cb")){place();watchKom();lift();if(S&&lim()!=S.m)trim();else if(S)paint();return}if(B||!find(/NUMURUS/,"textarea"))return;B=1;load().then(function(){B=0;mount(k)}).catch(function(){B=0})}
 setInterval(boot,800)})();
 
 /* Checkout: delivery-time lookup, floor field, door-code warning. */
@@ -36,7 +85,19 @@ if(!document.body){document.addEventListener("DOMContentLoaded",start);return}
 const A="https://script.google.com/macros/s/AKfycbwYf3V5MElQQOl8YsvXZEBHNwFOsd80EeWYZujXrRNPMt4d_9LDpazaR-wer9m0dWldxw/exec",q=s=>document.querySelector(s),Q=s=>[...document.querySelectorAll(s)],id=s=>document.getElementById(s);
 /* Private house, or pickup / "nav nozīmes", means no entrance code and no floor. */
 const H=v=>{v=(v||"").toLowerCase();return /privāt|privat/.test(v)&&/māj|maj/.test(v)||/nav būtiski|nav butiski|paņem|panem|nozīm|nozim/.test(v)};
-const rowOf=el=>{var n=el,best=el&&el.parentElement;while(n&&n!==document.body){var c=String(n.className||"");if(/ec-form__row|form__row|extrafield|extra-field/i.test(c))return n;if(/form-control/.test(c))best=n.parentElement||n;n=n.parentElement}return best};
+const rowOf=el=>{
+ /* Hide the whole checkout row, title included.
+    Stopping on the inner .ec-extrafield left "Piekļuve ēkai" sitting above Turpināt with no checkbox. */
+ var n=el,field=null;
+ while(n&&n!==document.body){
+  var c=String(n.className||"");
+  if(/ec-form__row|form__row/i.test(c))return n;
+  if(/extrafield|extra-field/i.test(c))field=n;
+  else if(/form-control/.test(c))field=n.parentElement||n;
+  n=n.parentElement
+ }
+ return field||(el&&el.parentElement)
+};
 
 let m=document.createElement("div");
 m.style="display:none;position:fixed;inset:0;z-index:999999;background:#0009;align-items:center;justify-content:center;padding:20px";
