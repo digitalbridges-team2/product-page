@@ -2,7 +2,7 @@
 if(window.__chebuPicker)return;
 window.__chebuPicker=1;
 var P={"265788019":"r","695724311":"v","835236352":"m"},U="https://docs.google.com/spreadsheets/d/117MqsXjhzQqp1u9lVrlc7Ro_wfoSr5KvxQGiBsNKsG8/gviz/tq?tqx=out:csv&gid=0",R,S,B,M;
-if(!document.getElementById("cb-css")){var e=document.createElement("style");e.id="cb-css";e.textContent=".hz{display:none!important}.cb{font-family:inherit;color:#191919}.cb .w{margin:0 0 6px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.cb [class$=__qty]{display:flex!important;align-items:center!important;gap:10px;margin:0 0 8px}.cb [class$=__qty] label{margin:0!important;font-weight:600}.cb [class$=__qty] .form-control,.cb [name=ec-qty]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}.cb .d,.cb .r{display:flex!important;align-items:center!important;gap:6px;background:#fff!important;border:1px solid #e6e6e6;border-radius:10px;margin:3px 0;padding:3px 6px}.cb h2{margin:0 0 2px;font-size:16px}.cb .k{margin:2px 0 8px;font-size:14px;font-weight:600}.cb .bar{flex:1;height:6px;background:#eee;border-radius:8px;overflow:hidden}.cb .bar i{display:block;height:6px;width:0;background:#333}.cb .nr{width:26px;height:26px;border-radius:50%;background:#333!important;color:#fff;display:grid!important;place-items:center;font-size:10px;font-weight:700;flex:none}.cb .bd{flex:1;min-width:0}.cb .nm{margin:0;font-weight:600;font-size:13px;line-height:1.15}.cb .mt,.cb .x,.cb .g{margin:0;color:#757575;font-size:11px;line-height:1.15}.cb .st{display:flex!important;align-items:center!important;background:#333!important;border-radius:99px;overflow:hidden;flex:none}.cb .st button,.cb .qn{display:grid!important;place-items:center!important;height:32px}.cb .st button{width:32px;background:#333!important;color:#fff!important;border:0!important;padding:0!important;margin:0!important;font-size:18px;box-shadow:none!important}.cb .st button:disabled{opacity:.35}.cb .qn{background:#fff!important;color:#191919!important;min-width:20px;font-weight:700}";document.head.appendChild(e)}
+if(!document.getElementById("cb-css")){var e=document.createElement("style");e.id="cb-css";e.textContent=".hz{display:none!important}.cb{font-family:inherit;color:#191919}.cb .w{margin:0 0 6px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.cb [class$=__qty]{display:flex!important;align-items:center!important;gap:10px;margin:0 0 8px}.cb [class$=__qty] label{margin:0!important;font-weight:600}.cb [class$=__qty] .form-control,.cb [name=ec-qty]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}.cb .d,.cb .r{display:flex!important;align-items:center!important;gap:6px;background:#fff!important;border:1px solid #e6e6e6;border-radius:10px;margin:3px 0;padding:3px 6px}.cb h2{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.01em}.cb h2 .pr{font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap}.cb .k{margin:2px 0 8px;font-size:14px;font-weight:600}.cb .bar{flex:1;height:6px;background:#eee;border-radius:8px;overflow:hidden}.cb .bar i{display:block;height:6px;width:0;background:#333}.cb .nr{width:26px;height:26px;border-radius:50%;background:#333!important;color:#fff;display:grid!important;place-items:center;font-size:10px;font-weight:700;flex:none}.cb .bd{flex:1;min-width:0}.cb .nm{margin:0;font-weight:600;font-size:13px;line-height:1.15}.cb .mt,.cb .x,.cb .g{margin:0;color:#757575;font-size:11px;line-height:1.15}.cb .st{display:flex!important;align-items:center!important;background:#333!important;border-radius:99px;overflow:hidden;flex:none}.cb .st button,.cb .qn{display:grid!important;place-items:center!important;height:32px}.cb .st button{width:32px;background:#333!important;color:#fff!important;border:0!important;padding:0!important;margin:0!important;font-size:18px;box-shadow:none!important}.cb .st button:disabled{opacity:.35}.cb .qn{background:#fff!important;color:#191919!important;min-width:20px;font-weight:700}";document.head.appendChild(e)}
 function rows(t){return t.trim().split(/\n/).map(function(l){return l.split('","').map(function(c){return c.replace(/"/g,"")})})}
 function load(){return M?Promise.resolve(M):fetch(U).then(function(r){return r.text()}).then(function(t){var a=rows(t),G=[],V=[],i,c,d;for(i=1;i<a.length;i++){c=a[i];if(!c[3])continue;d={n:+c[2],a:c[3],g:+c[4]||350,k:+c[5]||0};((c[1]||"").toLowerCase().indexOf("veg")==0?V:G).push(d)}M={w:a[1][0],G:G,V:V};return M})}
 function tx(e){return(e.innerText||"").replace(/\s+/g," ").trim()}
@@ -53,6 +53,46 @@ function items(k){
  return k=="v"?bag(M.V,"","v"):k=="m"?bag(M.G,"G","g").concat(bag(M.V,"V","v")):bag(M.G,"","g")
 }
 function sum(){var n=0,k;for(k in S.c)n+=S.c[k];return n}
+function money(t){var m=String(t||"").replace(/\s/g,"").match(/(\d+)[.,](\d{2})/);return m?+(m[1]+"."+m[2]):0}
+function euro(sample,n){
+ /* Same € mark the store already uses, so the total does not look like a second currency. */
+ var num=(Math.round(n*100)/100).toFixed(2),t=String(sample||"");
+ if(/,/.test(t))num=num.replace(".",",");
+ return /\d\s*€/.test(t)?num+" €":"€"+num
+}
+function syncPrice(){
+ /* Ecwid's price is one pack, option included. Daudzums only grows the
+    portion count, so 7 × 3 still sits under €35.90.
+    Keep that pack price, then show pack × quantity beside the count
+    and in the price at the top. VAT stays 21% of the new total. */
+ var el=document.querySelector(".product-details .details-product-price__value");
+ if(!el||!S)return "";
+ var raw=(el.textContent||"").trim(),q=+(S.qty&&S.qty.value)||1,unit,total,text,tax,nodes,i,node,vat;
+ if(q<1)q=1;
+ /* A price we did not write is Ecwid's pack price (radio or sauce just changed it). */
+ if(raw&&raw!==S.wrote){unit=money(raw);if(unit)S.unit=unit}
+ if(!S.unit)return "";
+ total=Math.round(S.unit*q*100)/100;
+ text=euro(raw||S.wrote,total);
+ S.wrote=text;
+ if((el.textContent||"").trim()!==text)el.textContent=text;
+ tax=document.querySelector(".product-details .product-details__product-price-taxes");
+ if(!tax){
+  nodes=document.querySelectorAll(".product-details span,.product-details div");
+  for(i=0;i<nodes.length;i++){
+   node=nodes[i];
+   if(node.children.length)continue;
+   if(/PVN/i.test(node.textContent||"")){tax=node;break}
+  }
+ }
+ if(tax){
+  if(!tax.dataset.cbt)tax.dataset.cbt=tax.textContent;
+  vat=(Math.round(total*21/121*100)/100).toFixed(2);
+  if(/,/.test(tax.dataset.cbt))vat=vat.replace(".",",");
+  tax.textContent=tax.dataset.cbt.replace(/\d+[.,]\d{2}/,vat)
+ }
+ return text
+}
 function card(it){var d=it.d;return '<div class=d data-key='+it.k+'><b class=nr>'+it.c+'</b><div class=bd><p class=nm>'+d.a.replace(/&/g,"&amp;")+'</p><p class=mt>~'+d.g+'g · '+d.k+'kcal</p></div><div class=st><button type=button data-act=m>−</button><b class=qn>0</b><button type=button data-act=p>+</button></div></div>'}
 function full(){return !!(S&&S.m&&sum()==S.m)}
 function buyRoot(){
@@ -70,9 +110,9 @@ function buyRoot(){
 }
 function stopBuy(e){var n,root,bag;if(!S)return;root=buyRoot();if(!root)return;n=e.target.closest(".details-product-purchase__add-to-bag,button,a");if(!n||!root.contains(n)||n.closest(".cb,.qs"))return;bag=n.closest(".details-product-purchase__add-to-bag");if(!bag&&!/grozā/i.test(tx(n)))return;if(full())return;e.preventDefault();e.stopImmediatePropagation()}
 if(!window.__chebuBuy){window.__chebuBuy=1;["pointerdown","mousedown","click"].forEach(function(ev){document.addEventListener(ev,stopBuy,true)})}
-function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=root?root.querySelectorAll("button,.details-product-purchase__add-to-bag"):[];q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q("h2").textContent="Izvēlies savas "+(m||0)+" porcijas";q(".x").textContent=u<m?"Vēl "+(m-u):"Gatavs";S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=!ok}}}
+function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=root?root.querySelectorAll("button,.details-product-purchase__add-to-bag"):[],cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0)+" porcijas";if(q(".pr"))q(".pr").textContent=cost;q(".x").textContent=u<m?"Vēl "+(m-u):"Gatavs";S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=!ok}}}
 function wk(w){w=w||"";return /ēdienkarte piegādei/i.test(w)?w:"Ēdienkarte piegādei "+w}
-function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;watchKom();lift();place();trim()}
+function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2><span class=ph></span><span class=pr></span></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;watchKom();lift();place();trim()}
 function boot(){var s=document.getElementById("cb-css");if(s)document.documentElement.appendChild(s);var h=location.href.match(/-p(\d+)|pid=(\d+)/),k=P[h&&(h[1]||h[2])];if(!k)return;if(document.querySelector(".cb")){place();watchKom();lift();if(S&&lim()!=S.m)trim();else if(S)paint();return}if(B||!find(/NUMURUS/,"textarea"))return;B=1;load().then(function(){B=0;mount(k)}).catch(function(){B=0})}
 setInterval(boot,800)})();
 
