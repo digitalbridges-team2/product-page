@@ -81,11 +81,13 @@ function setQty(q,n){var d;if(n<1)n=1;d=Object.getOwnPropertyDescriptor(HTMLInpu
 function place(){var q=document.querySelector("[name=ec-qty]"),n,w,ui,lab,num,b;if(!q||!R||!S)return;n=q.closest("[class$=__qty]")||q.parentElement;S.qty=q;w=R.querySelector(".w");if(w&&w.nextElementSibling!=n)w.after(n);q.oninput=q.onchange=trim;q.readOnly=1;q.tabIndex=-1;q.setAttribute("inputmode","none");nameQty(n);if(!n.querySelector(".qs")){ui=document.createElement("div");ui.className="qs";ui.innerHTML='<div class=st><button type=button data-q=m>−</button><b class=qn>1</b><button type=button data-q=p>+</button></div>';n.appendChild(ui);ui.onclick=function(e){var b=e.target.closest("button"),v,show;if(!b||!b.dataset.q)return;e.preventDefault();e.stopPropagation();v=+(q.value)||1;setQty(q,b.dataset.q=="p"?v+1:v-1);show=n.querySelector(".qs .qn");if(show)show.textContent=q.value;b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}}num=n.querySelector(".qs .qn");if(num)num.textContent=String(+(q.value)||1);b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}
 function setV(el,v){Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,"value").set.call(el,v);el.dispatchEvent(new Event("input",{bubbles:1}));el.dispatchEvent(new Event("change",{bubbles:1}))}
 function packLine(code){
- /* This box is the dish list, in the order they tapped.
-    Mix is 1G 2V 3G. Meat is 1G 2G. Vegetarian is 1V 2V.
-    The 5/7 name stays on the radio. A comma in this box makes
-    the sheet keep "5 porcijas" and drop the dishes. */
- return code.join(" ")
+ /* Zapier splits this option on commas. "5 porcijas, 1G 2V"
+    becomes two values, and the sheet keeps only "5 porcijas".
+    One string, no comma: "5 porcijas 1G 2V 3G". */
+ var line=code.join(" "),n=cap(S.sel);
+ if(!line)return "";
+ if(n==5||n==7)return n+" porcijas "+line;
+ return line
 }
 function bag(a,suf,g){return a.map(function(d){return{k:g+d.n,c:d.n+suf,g:g,d:d}})}
 function items(k){
