@@ -81,13 +81,11 @@ function setQty(q,n){var d;if(n<1)n=1;d=Object.getOwnPropertyDescriptor(HTMLInpu
 function place(){var q=document.querySelector("[name=ec-qty]"),n,w,ui,lab,num,b;if(!q||!R||!S)return;n=q.closest("[class$=__qty]")||q.parentElement;S.qty=q;w=R.querySelector(".w");if(w&&w.nextElementSibling!=n)w.after(n);q.oninput=q.onchange=trim;q.readOnly=1;q.tabIndex=-1;q.setAttribute("inputmode","none");nameQty(n);if(!n.querySelector(".qs")){ui=document.createElement("div");ui.className="qs";ui.innerHTML='<div class=st><button type=button data-q=m>−</button><b class=qn>1</b><button type=button data-q=p>+</button></div>';n.appendChild(ui);ui.onclick=function(e){var b=e.target.closest("button"),v,show;if(!b||!b.dataset.q)return;e.preventDefault();e.stopPropagation();v=+(q.value)||1;setQty(q,b.dataset.q=="p"?v+1:v-1);show=n.querySelector(".qs .qn");if(show)show.textContent=q.value;b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}}num=n.querySelector(".qs .qn");if(num)num.textContent=String(+(q.value)||1);b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}
 function setV(el,v){Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,"value").set.call(el,v);el.dispatchEvent(new Event("input",{bubbles:1}));el.dispatchEvent(new Event("change",{bubbles:1}))}
 function packLine(code){
- /* The sheet prints this box after whichever option changed the price.
-    "7 porcijas" has a surcharge, so that word is already in the row.
-    "5 porcijas" is the free default, so Ecwid leaves it out and the
-    row is only the dish codes. Put the missing name in this same box. */
- var line=code.join(" ");
- if(cap(S.sel)==5&&line)return "5 porcijas, "+line;
- return line
+ /* This box is the dish list, in the order they tapped.
+    Mix is 1G 2V 3G. Meat is 1G 2G. Vegetarian is 1V 2V.
+    The 5/7 name stays on the radio. A comma in this box makes
+    the sheet keep "5 porcijas" and drop the dishes. */
+ return code.join(" ")
 }
 function bag(a,suf,g){return a.map(function(d){return{k:g+d.n,c:d.n+suf,g:g,d:d}})}
 function items(k){
