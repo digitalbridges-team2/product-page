@@ -2,7 +2,7 @@
 if(window.__chebuPicker)return;
 window.__chebuPicker=1;
 var P={"265788019":"r","695724311":"v","835236352":"m"},U="https://docs.google.com/spreadsheets/d/117MqsXjhzQqp1u9lVrlc7Ro_wfoSr5KvxQGiBsNKsG8/gviz/tq?tqx=out:csv&gid=0",R,S,B,M;
-if(!document.getElementById("cb-css")){var e=document.createElement("style");e.id="cb-css";e.textContent=".hz{display:none!important}.cb{font-family:inherit;color:#191919}.cb .w{margin:0 0 6px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.cb [class$=__qty]{display:flex!important;align-items:center!important;gap:10px;margin:0 0 8px}.cb [class$=__qty] label{margin:0!important;font-weight:600}.cb [class$=__qty] .form-control,.cb [name=ec-qty]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}.cb .d,.cb .r{display:flex!important;align-items:center!important;gap:6px;background:#fff!important;border:1px solid #e6e6e6;border-radius:10px;margin:3px 0;padding:3px 6px}.cb h2{display:block!important;text-align:left;margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.25}.cb h2 .tail{white-space:nowrap}.cb h2 .pr{margin-left:6px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}@media(max-width:520px){.cb h2{font-size:15px}.cb h2 .pr{font-size:13px;margin-left:5px}}.cb .k{margin:2px 0 8px;font-size:14px;font-weight:600}.cb .bar{flex:1;height:6px;background:#eee;border-radius:8px;overflow:hidden}.cb .bar i{display:block;height:6px;width:0;background:#333}.cb .nr{width:26px;height:26px;border-radius:50%;background:#333!important;color:#fff;display:grid!important;place-items:center;font-size:10px;font-weight:700;flex:none}.cb .bd{flex:1;min-width:0}.cb .nm{margin:0;font-weight:600;font-size:13px;line-height:1.15}.cb .mt,.cb .x,.cb .g{margin:0;color:#757575;font-size:11px;line-height:1.15}.cb .st{display:flex!important;align-items:center!important;background:#333!important;border-radius:99px;overflow:hidden;flex:none}.cb .st button,.cb .qn{display:grid!important;place-items:center!important;height:32px}.cb .st button{width:32px;background:#333!important;color:#fff!important;border:0!important;padding:0!important;margin:0!important;font-size:18px;box-shadow:none!important}.cb .st button:disabled{opacity:.35}.cb .qn{background:#fff!important;color:#191919!important;min-width:20px;font-weight:700}";document.head.appendChild(e)}
+if(!document.getElementById("cb-css")){var e=document.createElement("style");e.id="cb-css";e.textContent=".hz{display:none!important}.cb{font-family:inherit;color:#191919;margin-bottom:22px}.cb .w{margin:0 0 6px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.cb [class$=__qty]{display:flex!important;align-items:center!important;gap:10px;margin:0 0 8px}.cb [class$=__qty] label{margin:0!important;font-weight:600}.cb [class$=__qty] .form-control,.cb [name=ec-qty]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}.cb .d,.cb .r{display:flex!important;align-items:center!important;gap:6px;background:#fff!important;border:1px solid #e6e6e6;border-radius:10px;margin:3px 0;padding:3px 6px}.cb h2{display:block!important;text-align:left;margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.25}.cb h2 .tail{white-space:nowrap}.cb h2 .pr{margin-left:6px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}@media(max-width:520px){.cb h2{font-size:15px}.cb h2 .pr{font-size:13px;margin-left:5px}}.cb .k{margin:2px 0 8px;font-size:14px;font-weight:600}.cb .bar{flex:1;height:6px;background:#eee;border-radius:8px;overflow:hidden}.cb .bar i{display:block;height:6px;width:0;background:#333}.cb .nr{width:26px;height:26px;border-radius:50%;background:#333!important;color:#fff;display:grid!important;place-items:center;font-size:10px;font-weight:700;flex:none}.cb .bd{flex:1;min-width:0}.cb .nm{margin:0;font-weight:600;font-size:13px;line-height:1.15}.cb .mt,.cb .x,.cb .g{margin:0;color:#757575;font-size:11px;line-height:1.15}.cb .x.warn,.cb-need{color:#ff3b30;font-size:13px;font-weight:600;line-height:1.3}.cb-need{margin:8px 0}.cbk .details-product-option__title{font-size:15px!important}.cbk label,.cbk .form-control__radio{font-size:17px!important;line-height:1.35}.cbk .form-control__radio{min-height:32px;padding-top:5px;padding-bottom:5px}.cb .st{display:flex!important;align-items:center!important;background:#333!important;border-radius:99px;overflow:hidden;flex:none}.cb .st button,.cb .qn{display:grid!important;place-items:center!important;height:32px}.cb .st button{width:32px;background:#333!important;color:#fff!important;border:0!important;padding:0!important;margin:0!important;font-size:18px;box-shadow:none!important}.cb .st button:disabled{opacity:.35}.cb .qn{background:#fff!important;color:#191919!important;min-width:20px;font-weight:700}";document.head.appendChild(e)}
 function rows(t){return t.trim().split(/\n/).map(function(l){return l.split('","').map(function(c){return c.replace(/"/g,"")})})}
 function load(){return M?Promise.resolve(M):fetch(U).then(function(r){return r.text()}).then(function(t){var a=rows(t),G=[],V=[],i,c,d;for(i=1;i<a.length;i++){c=a[i];if(!c[3])continue;d={n:+c[2],a:c[3],g:+c[4]||350,k:+c[5]||0};((c[1]||"").toLowerCase().indexOf("veg")==0?V:G).push(d)}M={w:a[1][0],G:G,V:V};return M})}
 function tx(e){return(e.innerText||"").replace(/\s+/g," ").trim()}
@@ -42,9 +42,28 @@ function lift(){
  if(!k||!R||!R.isConnected||k.w.contains(R))return;
  if(R.previousElementSibling!=k.w)R.before(k.w)
 }
+function dressKom(){
+ /* The set-size choice is easy to miss. Mark the block so the type can sit a step larger. */
+ var k=kom();
+ if(k)k.w.classList.add("cbk")
+}
+function pick5(){
+ /* Required radios start empty, which leaves "Lūdzu, precizējiet nosacījumus" under the bag button.
+    Check 5 porcijas once, the same way a tap would, and leave a later 7-choice alone. */
+ var k=kom(),a,i,r,d;
+ if(!k)return;
+ a=k.w.querySelectorAll("input[type=radio]");
+ for(i=0;i<a.length;i++)if(a[i].checked)return;
+ for(i=0;i<a.length;i++)if(/porcij/i.test(a[i].value||"")&&/^5\b/.test(a[i].value||"")){r=a[i];break}
+ if(!r)return;
+ d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"checked");
+ if(d&&d.set)d.set.call(r,true);else r.checked=true;
+ r.dispatchEvent(new Event("input",{bubbles:true}));
+ r.dispatchEvent(new Event("change",{bubbles:true}))
+}
 function trim(){var i;if(!S)return;S.m=lim();while(S.m&&sum()>S.m){i=S.items.length;while(i--)if(S.c[S.items[i].k]){S.c[S.items[i].k]--;break}}paint()}
 function setQty(q,n){var d;if(n<1)n=1;d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value");if(d&&d.set)d.set.call(q,String(n));else q.value=String(n);q.dispatchEvent(new Event("input",{bubbles:1}));q.dispatchEvent(new Event("change",{bubbles:1}))}
-function place(){var q=document.querySelector("[name=ec-qty]"),n,w,ui,lab,num,b;if(!q||!R||!S)return;n=q.closest("[class$=__qty]")||q.parentElement;S.qty=q;w=R.querySelector(".w");if(w&&w.nextElementSibling!=n)w.after(n);q.oninput=q.onchange=trim;q.readOnly=1;q.tabIndex=-1;q.setAttribute("inputmode","none");lab=n.querySelector("label");if(lab)lab.htmlFor="";if(!n.querySelector(".qs")){ui=document.createElement("div");ui.className="qs";ui.innerHTML='<div class=st><button type=button data-q=m>−</button><b class=qn>1</b><button type=button data-q=p>+</button></div>';n.appendChild(ui);ui.onclick=function(e){var b=e.target.closest("button"),v,show;if(!b||!b.dataset.q)return;e.preventDefault();e.stopPropagation();v=+(q.value)||1;setQty(q,b.dataset.q=="p"?v+1:v-1);show=n.querySelector(".qs .qn");if(show)show.textContent=q.value;b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}}num=n.querySelector(".qs .qn");if(num)num.textContent=String(+(q.value)||1);b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}
+function place(){var q=document.querySelector("[name=ec-qty]"),n,w,ui,lab,num,b;if(!q||!R||!S)return;n=q.closest("[class$=__qty]")||q.parentElement;S.qty=q;w=R.querySelector(".w");if(w&&w.nextElementSibling!=n)w.after(n);q.oninput=q.onchange=trim;q.readOnly=1;q.tabIndex=-1;q.setAttribute("inputmode","none");lab=n.querySelector("label");if(lab){lab.htmlFor="";lab.textContent="Komplektu skaits"}if(!n.querySelector(".qs")){ui=document.createElement("div");ui.className="qs";ui.innerHTML='<div class=st><button type=button data-q=m>−</button><b class=qn>1</b><button type=button data-q=p>+</button></div>';n.appendChild(ui);ui.onclick=function(e){var b=e.target.closest("button"),v,show;if(!b||!b.dataset.q)return;e.preventDefault();e.stopPropagation();v=+(q.value)||1;setQty(q,b.dataset.q=="p"?v+1:v-1);show=n.querySelector(".qs .qn");if(show)show.textContent=q.value;b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}}num=n.querySelector(".qs .qn");if(num)num.textContent=String(+(q.value)||1);b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}
 function setV(el,v){Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,"value").set.call(el,v);el.dispatchEvent(new Event("input",{bubbles:1}));el.dispatchEvent(new Event("change",{bubbles:1}))}
 function bag(a,suf,g){return a.map(function(d){return{k:g+d.n,c:d.n+suf,g:g,d:d}})}
 function items(k){
@@ -95,6 +114,20 @@ function syncPrice(){
 }
 function card(it){var d=it.d;return '<div class=d data-key='+it.k+'><b class=nr>'+it.c+'</b><div class=bd><p class=nm>'+d.a.replace(/&/g,"&amp;")+'</p><p class=mt>~'+d.g+'g · '+d.k+'kcal</p></div><div class=st><button type=button data-act=m>−</button><b class=qn>0</b><button type=button data-act=p>+</button></div></div>'}
 function full(){return !!(S&&S.m&&sum()==S.m)}
+function needNote(root,show){
+ /* Same sentence as the line under the heading, sitting on the bag button.
+    A short selection (4 of 5) has to read as unfinished in both places. */
+ var n,bag;
+ if(!root)return;
+ n=root.querySelector(".cb-need");
+ if(!show){if(n)n.remove();return}
+ if(n)return;
+ n=document.createElement("p");
+ n.className="cb-need";
+ n.textContent="Pievieno atbilstošu porciju skaitu";
+ bag=root.querySelector(".details-product-purchase__add-to-bag")||root.querySelector("button");
+ if(bag)bag.before(n);else root.appendChild(n)
+}
 function buyRoot(){
  /* The quantity field is moved into the picker, so it no longer sits inside
     the purchase block. Look the block up on its own, or the sidebar button. */
@@ -110,10 +143,10 @@ function buyRoot(){
 }
 function stopBuy(e){var n,root,bag;if(!S)return;root=buyRoot();if(!root)return;n=e.target.closest(".details-product-purchase__add-to-bag,button,a");if(!n||!root.contains(n)||n.closest(".cb,.qs"))return;bag=n.closest(".details-product-purchase__add-to-bag");if(!bag&&!/grozā/i.test(tx(n)))return;if(full())return;e.preventDefault();e.stopImmediatePropagation()}
 if(!window.__chebuBuy){window.__chebuBuy=1;["pointerdown","mousedown","click"].forEach(function(ev){document.addEventListener(ev,stopBuy,true)})}
-function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=root?root.querySelectorAll("button,.details-product-purchase__add-to-bag"):[],cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0);if(q(".pr"))q(".pr").textContent=cost;q(".x").textContent=u<m?"Vēl "+(m-u):"Gatavs";S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=!ok}}}
+function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=root?root.querySelectorAll("button,.details-product-purchase__add-to-bag"):[],cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0);if(q(".pr"))q(".pr").textContent=cost;q(".x").textContent=ok?"Gatavs":"Pievieno atbilstošu porciju skaitu";q(".x").classList.toggle("warn",!ok);needNote(root,!ok);S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=!ok}}}
 function wk(w){w=w||"";return /ēdienkarte piegādei/i.test(w)?w:"Ēdienkarte piegādei "+w}
-function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2><span class=ph></span> <span class=tail>porcijas <span class=pr></span></span></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;watchKom();lift();place();trim()}
-function boot(){var s=document.getElementById("cb-css");if(s)document.documentElement.appendChild(s);var h=location.href.match(/-p(\d+)|pid=(\d+)/),k=P[h&&(h[1]||h[2])];if(!k)return;if(document.querySelector(".cb")){place();watchKom();lift();if(S&&lim()!=S.m)trim();else if(S)paint();return}if(B||!find(/NUMURUS/,"textarea"))return;B=1;load().then(function(){B=0;mount(k)}).catch(function(){B=0})}
+function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2><span class=ph></span> <span class=tail>porcijas <span class=pr></span></span></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;watchKom();lift();dressKom();pick5();place();trim()}
+function boot(){var s=document.getElementById("cb-css");if(s)document.documentElement.appendChild(s);var h=location.href.match(/-p(\d+)|pid=(\d+)/),k=P[h&&(h[1]||h[2])];if(!k)return;if(document.querySelector(".cb")){place();watchKom();lift();dressKom();pick5();if(S&&lim()!=S.m)trim();else if(S)paint();return}if(B||!find(/NUMURUS/,"textarea"))return;B=1;load().then(function(){B=0;mount(k)}).catch(function(){B=0})}
 setInterval(boot,800)})();
 
 /* Checkout: delivery-time lookup, floor field, door-code warning. */
@@ -199,16 +232,62 @@ id("wg").onclick=()=>{
  skip=1;let b=pb;pb=null;b?.click()
 };
 
+function phoneEl(){
+ /* Checkout phone only. Skip the delivery-time box, which wants the last 3 digits. */
+ let all=Q("input"),i,el,blob,lab;
+ for(i=0;i<all.length;i++){
+  el=all[i];
+  if(el.id==="p"||el.closest("#o")||(el.maxLength>0&&el.maxLength<=3))continue;
+  blob=((el.name||"")+" "+(el.id||"")+" "+(el.getAttribute("autocomplete")||"")+" "+(el.type||"")).toLowerCase();
+  if(/phone|tel/.test(blob)&&!/search/.test(blob))return el
+ }
+ lab=Q("label");
+ for(i=0;i<lab.length;i++){
+  if(!/tālrun|talrun|telef|phone/i.test(lab[i].textContent||""))continue;
+  el=lab[i].control||(lab[i].htmlFor&&document.getElementById(lab[i].htmlFor));
+  if(el&&el.tagName==="INPUT")return el
+ }
+ return null
+}
+function cleanPhone(v){
+ /* One number: optional + in front, then digits. Commas, spaces, and a second number do not stay. */
+ v=String(v||"");
+ let plus=/^\s*\+/.test(v),d=v.replace(/\D/g,"").slice(0,15);
+ return (plus?"+":"")+d
+}
+function bindPhone(){
+ let el=phoneEl(),d;
+ if(!el||el.dataset.cbp)return;
+ el.dataset.cbp="1";
+ el.setAttribute("inputmode","tel");
+ el.maxLength=16;
+ el.addEventListener("input",()=>{
+  let next=cleanPhone(el.value);
+  if(el.value!==next){
+   d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value");
+   if(d&&d.set)d.set.call(el,next);else el.value=next;
+   el.dispatchEvent(new Event("input",{bubbles:true}))
+  }
+  let n=el.value.replace(/\D/g,"").length;
+  el.setCustomValidity(n&&(n<8||n>15)?"Ievadi tālruni, 8–15 cipari.":"")
+ })
+}
+
 document.addEventListener("click",e=>{
  let b=e.target.closest("button");if(!b||["g","x","we","wg"].includes(b.id)||b.closest(".cb,.qs"))return;
- let f=q('[name="bqcte57"]'),t=q('[name="n8r2js8"]:checked'),c=q('[name="w1uhhvp"]'),n=q('input[type=checkbox][value="Durvju koda nav"]'),h=H(t?.value||"");
+ let f=q('[name="bqcte57"]'),t=q('[name="n8r2js8"]:checked'),c=q('[name="w1uhhvp"]'),n=q('input[type=checkbox][value="Durvju koda nav"]'),h=H(t?.value||""),ph=phoneEl();
+ if(ph&&ph.offsetParent&&b.closest("form")&&ph.closest("form")===b.closest("form")){
+  let digits=ph.value.replace(/\D/g,"");
+  if(digits.length<8||digits.length>15){e.preventDefault();e.stopImmediatePropagation();ph.setCustomValidity("Ievadi tālruni, 8–15 cipari.");ph.reportValidity();ph.focus();return}
+  ph.setCustomValidity("")
+ }
  if(f&&t&&t.value=="Dzīvokļu māja"&&!f.value.trim()){e.preventDefault();e.stopImmediatePropagation();f.setCustomValidity("Lūdzu, norādi stāvu.");f.reportValidity();f.focus();return}
  if(c&&n&&t&&!h&&!n.checked&&!c.value.trim()){e.preventDefault();e.stopImmediatePropagation();W("Nav norādīts durvju kods",'Norādi durvju kodu vai atzīmē "Durvju koda nav".',b);return}
  if(skip){skip=0;return}
  if(c&&n&&t&&!h&&!n.checked&&/^\d{1,3}$/.test(c.value.trim())){e.preventDefault();e.stopImmediatePropagation();W("Dzīvokļa numurs?","Ja norādījāt dzīvokļa numuru namrunim, nevis durvju kodu — piegādes laikā jābūt sazvanāmam.",b)}
 },true);
 
-new MutationObserver(()=>{F();D()}).observe(document.body,{childList:true,subtree:true});F();D()
+new MutationObserver(()=>{F();D();bindPhone()}).observe(document.body,{childList:true,subtree:true});F();D();bindPhone()
 };
 start()
 })();
