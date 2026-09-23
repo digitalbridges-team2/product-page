@@ -2,7 +2,7 @@
 if(window.__chebuPicker)return;
 window.__chebuPicker=1;
 var P={"265788019":"r","695724311":"v","835236352":"m"},U="https://docs.google.com/spreadsheets/d/117MqsXjhzQqp1u9lVrlc7Ro_wfoSr5KvxQGiBsNKsG8/gviz/tq?tqx=out:csv&gid=0",R,S,B,M;
-if(!document.getElementById("cb-css")){var e=document.createElement("style");e.id="cb-css";e.textContent=".hz{display:none!important}.cb{font-family:inherit;color:#191919;margin-bottom:22px}.cb .w{margin:0 0 6px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.cb [class$=__qty]{display:flex!important;align-items:center!important;gap:10px;margin:0 0 8px}.cb [class$=__qty] label{margin:0!important;font-weight:600}.cb [class$=__qty] .form-control,.cb [name=ec-qty]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}.cb .d,.cb .r{display:flex!important;align-items:center!important;gap:6px;background:#fff!important;border:1px solid #e6e6e6;border-radius:10px;margin:3px 0;padding:3px 6px}.cb h2{display:block!important;text-align:left;margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.25}.cb h2 .tail{white-space:nowrap}.cb h2 .pr{margin-left:6px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}@media(max-width:520px){.cb h2{font-size:15px}.cb h2 .pr{font-size:13px;margin-left:5px}}.cb .k{margin:2px 0 8px;font-size:14px;font-weight:600}.cb .bar{flex:1;height:6px;background:#eee;border-radius:8px;overflow:hidden}.cb .bar i{display:block;height:6px;width:0;background:#333}.cb .nr{width:26px;height:26px;border-radius:50%;background:#333!important;color:#fff;display:grid!important;place-items:center;font-size:10px;font-weight:700;flex:none}.cb .bd{flex:1;min-width:0}.cb .nm{margin:0;font-weight:600;font-size:13px;line-height:1.15}.cb .mt,.cb .x,.cb .g{margin:0;color:#757575;font-size:11px;line-height:1.15}.cb .x.warn,.cb-need{color:#ff3b30;font-size:13px;font-weight:600;line-height:1.3}.cb-need{margin:8px 0}.cb .ql,.cb [class$=__qty] .product-details-module__title{font-weight:600;margin:0;flex:none;white-space:nowrap}.cb .cb-hide{display:none!important}.cbk,.cbk .product-details-module__content{font-size:17px}.cbk .details-product-option__title,.cbk .product-details-module__title{font-size:15px!important}.cbk label,.cbk .form-control__radio,.cbk .form-control__inline-label{font-size:17px!important;line-height:1.35}.cbk .form-control__radio{min-height:32px;padding-top:5px;padding-bottom:5px}.cb .st{display:flex!important;align-items:center!important;background:#333!important;border-radius:99px;overflow:hidden;flex:none}.cb .st button,.cb .qn{display:grid!important;place-items:center!important;height:32px}.cb .st button{width:32px;background:#333!important;color:#fff!important;border:0!important;padding:0!important;margin:0!important;font-size:18px;box-shadow:none!important}.cb .st button:disabled{opacity:.35}.cb .qn{background:#fff!important;color:#191919!important;min-width:20px;font-weight:700}";document.head.appendChild(e)}
+if(!document.getElementById("cb-css")){var e=document.createElement("style");e.id="cb-css";e.textContent=".hz{display:none!important}.cb{font-family:inherit;color:#191919;margin-bottom:44px}.cb .w{margin:0 0 6px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.cb [class$=__qty]{display:flex!important;align-items:center!important;gap:10px;margin:0 0 8px}.cb [class$=__qty] label{margin:0!important;font-weight:600}.cb [class$=__qty] .form-control,.cb [name=ec-qty]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}.cb .d,.cb .r{display:flex!important;align-items:center!important;gap:6px;background:#fff!important;border:1px solid #e6e6e6;border-radius:10px;margin:3px 0;padding:3px 6px}.cb h2{display:block!important;text-align:left;margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.25}.cb h2 .tail{white-space:nowrap}.cb h2 .pr{margin-left:6px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}@media(max-width:520px){.cb h2{font-size:15px}.cb h2 .pr{font-size:13px;margin-left:5px}}.cb .k{margin:2px 0 8px;font-size:14px;font-weight:600}.cb .bar{flex:1;height:6px;background:#eee;border-radius:8px;overflow:hidden}.cb .bar i{display:block;height:6px;width:0;background:#333}.cb .nr{width:26px;height:26px;border-radius:50%;background:#333!important;color:#fff;display:grid!important;place-items:center;font-size:10px;font-weight:700;flex:none}.cb .bd{flex:1;min-width:0}.cb .nm{margin:0;font-weight:600;font-size:13px;line-height:1.15}.cb .mt,.cb .x,.cb .g{margin:0;color:#757575;font-size:11px;line-height:1.15}.cb .x.warn,.cb-need{color:#ff3b30;font-size:13px;font-weight:600;line-height:1.3}.cb-need{display:block!important;width:100%;flex-basis:100%;margin:0 0 8px}.cb .ql,.cb [class$=__qty] .product-details-module__title{font-weight:600;margin:0;flex:none;white-space:nowrap}.cb .cb-hide{display:none!important}.cbk,.cbk .product-details-module__content{font-size:17px}.cbk .details-product-option__title,.cbk .product-details-module__title{font-size:15px!important}.cbk label,.cbk .form-control__radio,.cbk .form-control__inline-label{font-size:17px!important;line-height:1.35}.cbk .form-control__radio{min-height:32px;padding-top:5px;padding-bottom:5px}.cb .st{display:flex!important;align-items:center!important;background:#333!important;border-radius:99px;overflow:hidden;flex:none}.cb .st button,.cb .qn{display:grid!important;place-items:center!important;height:32px}.cb .st button{width:32px;background:#333!important;color:#fff!important;border:0!important;padding:0!important;margin:0!important;font-size:18px;box-shadow:none!important}.cb .st button:disabled{opacity:.35}.cb .qn{background:#fff!important;color:#191919!important;min-width:20px;font-weight:700}";document.head.appendChild(e)}
 function rows(t){return t.trim().split(/\n/).map(function(l){return l.split('","').map(function(c){return c.replace(/"/g,"")})})}
 function load(){return M?Promise.resolve(M):fetch(U).then(function(r){return r.text()}).then(function(t){var a=rows(t),G=[],V=[],i,c,d;for(i=1;i<a.length;i++){c=a[i];if(!c[3])continue;d={n:+c[2],a:c[3],g:+c[4]||350,k:+c[5]||0};((c[1]||"").toLowerCase().indexOf("veg")==0?V:G).push(d)}M={w:a[1][0],G:G,V:V};return M})}
 function tx(e){return(e.innerText||"").replace(/\s+/g," ").trim()}
@@ -129,40 +129,92 @@ function syncPrice(){
 }
 function card(it){var d=it.d;return '<div class=d data-key='+it.k+'><b class=nr>'+it.c+'</b><div class=bd><p class=nm>'+d.a.replace(/&/g,"&amp;")+'</p><p class=mt>~'+d.g+'g · '+d.k+'kcal</p></div><div class=st><button type=button data-act=m>−</button><b class=qn>0</b><button type=button data-act=p>+</button></div></div>'}
 function full(){return !!(S&&S.m&&sum()==S.m)}
-function needNote(root,show){
- /* Same sentence as the line under the heading, sitting on the bag button.
-    A short selection (4 of 5) has to read as unfinished in both places. */
- var n,bag;
- if(!root)return;
- n=root.querySelector(".cb-need");
- if(!show){if(n)n.remove();return}
- if(n)return;
- n=document.createElement("p");
- n.className="cb-need";
- n.textContent="Pievieno atbilstošu porciju skaitu";
- bag=root.querySelector(".details-product-purchase__add-to-bag")||root.querySelector("button");
- if(bag)bag.before(n);else root.appendChild(n)
+function bagEl(){
+ /* The visible "Ielikt grozā", not a hidden copy higher in the page. */
+ var all=document.querySelectorAll("button"),i,b,fallback=null;
+ for(i=0;i<all.length;i++){
+  b=all[i];
+  if(!isBag(b)||!/grozā/i.test(tx(b)))continue;
+  if(b.offsetParent||b.getClientRects().length)return b;
+  if(!fallback)fallback=b
+ }
+ return fallback
+}
+function needNote(show){
+ /* The red line under the heading scrolls away. Repeat it immediately
+    above the bag button, or a short set looks like a dead button. */
+ var bag=bagEl(),n=document.querySelector(".cb-need");
+ if(!show||!bag){if(n)n.remove();return}
+ if(!n){
+  n=document.createElement("p");
+  n.className="cb-need";
+  n.textContent="Pievieno atbilstošu porciju skaitu"
+ }
+ if(n.nextElementSibling!==bag)bag.before(n)
+}
+function isBag(n){
+ /* The real "Ielikt grozā" can sit outside the purchase block once quantity is moved.
+    Match the button itself, wherever it is rendered. */
+ if(!n||n.closest(".cb,.qs"))return false;
+ if(n.classList&&n.classList.contains("details-product-purchase__add-to-bag"))return true;
+ return /grozā/i.test(tx(n))
 }
 function buyRoot(){
- /* The quantity field is moved into the picker, so it no longer sits inside
-    the purchase block. Look the block up on its own, or the sidebar button. */
- var box=document.querySelector(".product-details .details-product-purchase");
- if(box)return box;
- var btns=document.querySelectorAll("button"),i,b;
+ var btns=document.querySelectorAll("button,a,.details-product-purchase__add-to-bag"),i,b;
  for(i=0;i<btns.length;i++){
   b=btns[i];
-  if(b.closest(".cb,.qs"))continue;
-  if(/grozā/i.test(tx(b)))return b.closest(".product-details__sidebar")||b.parentElement
+  if(!isBag(b))continue;
+  return b.closest(".product-details__sidebar,.details-product-purchase")||b.parentElement
  }
- return null
+ return document.querySelector(".product-details .details-product-purchase")
 }
-function stopBuy(e){var n,root,bag;if(!S)return;root=buyRoot();if(!root)return;n=e.target.closest(".details-product-purchase__add-to-bag,button,a");if(!n||!root.contains(n)||n.closest(".cb,.qs"))return;bag=n.closest(".details-product-purchase__add-to-bag");if(!bag&&!/grozā/i.test(tx(n)))return;if(full())return;e.preventDefault();e.stopImmediatePropagation()}
+function stopBuy(e){
+ /* A 5-portion set with two dish codes must not reach the cart.
+    Block the bag control until the picked count matches the set. */
+ var n;if(!S)return;
+ n=e.target.closest("button,a,.details-product-purchase__add-to-bag");
+ if(!isBag(n))return;
+ if(full())return;
+ e.preventDefault();
+ e.stopImmediatePropagation()
+}
 if(!window.__chebuBuy){window.__chebuBuy=1;["pointerdown","mousedown","click"].forEach(function(ev){document.addEventListener(ev,stopBuy,true)})}
-function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=root?root.querySelectorAll("button,.details-product-purchase__add-to-bag"):[],cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0);if(q(".pr"))q(".pr").textContent=cost;q(".x").textContent=ok?"Gatavs":"Pievieno atbilstošu porciju skaitu";q(".x").classList.toggle("warn",!ok);needNote(root,!ok);S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=!ok}}}
+function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=document.querySelectorAll("button,a,.details-product-purchase__add-to-bag"),cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0);if(q(".pr"))q(".pr").textContent=cost;q(".x").textContent=ok?"Gatavs":"Pievieno atbilstošu porciju skaitu";q(".x").classList.toggle("warn",!ok);needNote(!ok);S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=!ok}}}
 function wk(w){w=w||"";return /ēdienkarte piegādei/i.test(w)?w:"Ēdienkarte piegādei "+w}
 function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2><span class=ph></span> <span class=tail>porcijas <span class=pr></span></span></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;watchKom();lift();dressKom();pick5();place();trim()}
 function boot(){var s=document.getElementById("cb-css");if(s)document.documentElement.appendChild(s);var h=location.href.match(/-p(\d+)|pid=(\d+)/),k=P[h&&(h[1]||h[2])];if(!k)return;if(document.querySelector(".cb")){place();watchKom();lift();dressKom();pick5();if(S&&lim()!=S.m)trim();else if(S)paint();return}if(B||!find(/NUMURUS/,"textarea"))return;B=1;load().then(function(){B=0;mount(k)}).catch(function(){B=0})}
-setInterval(boot,800)})();
+function lockCart(){
+ /* Skaits in the cart is Ecwid's own control. Changing it multiplies the
+    price and leaves the dish codes behind, so "7 7" can be billed as 4 sets.
+    Keep that number where it was. Komplektu skaits on the product page
+    is what writes a matching code list. */
+ var rows=document.querySelectorAll(".ec-cart-item,.ec-cart__item"),i,row,ctr,proto,desc;
+ for(i=0;i<rows.length;i++){
+  row=rows[i];
+  if(!/pusdienu piedāvājums vakuumā/i.test(row.innerText||""))continue;
+  ctr=row.querySelector("select,input[type=number]");
+  if(!ctr)continue;
+  if(!ctr.dataset.cbq)ctr.dataset.cbq=ctr.value;
+  if(ctr.value!==ctr.dataset.cbq){
+   proto=ctr.tagName==="SELECT"?HTMLSelectElement.prototype:HTMLInputElement.prototype;
+   desc=Object.getOwnPropertyDescriptor(proto,"value");
+   if(desc&&desc.set)desc.set.call(ctr,ctr.dataset.cbq);else ctr.value=ctr.dataset.cbq
+  }
+  ctr.disabled=true;
+  if(ctr.dataset.cbl)continue;
+  ctr.dataset.cbl="1";
+  ctr.title="Skaits mainās pie komplekta, kopā ar ēdienu numuriem";
+  ctr.addEventListener("change",function(e){
+   if(this.value===this.dataset.cbq)return;
+   e.preventDefault();
+   e.stopImmediatePropagation();
+   var p=this.tagName==="SELECT"?HTMLSelectElement.prototype:HTMLInputElement.prototype;
+   var d=Object.getOwnPropertyDescriptor(p,"value");
+   if(d&&d.set)d.set.call(this,this.dataset.cbq);else this.value=this.dataset.cbq
+  },true)
+ }
+}
+setInterval(function(){boot();lockCart()},800)})();
 
 /* Checkout: delivery-time lookup, floor field, door-code warning. */
 (()=>{
