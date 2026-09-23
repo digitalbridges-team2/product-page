@@ -2,7 +2,7 @@
 if(window.__chebuPicker)return;
 window.__chebuPicker=1;
 var P={"265788019":"r","695724311":"v","835236352":"m"},U="https://docs.google.com/spreadsheets/d/117MqsXjhzQqp1u9lVrlc7Ro_wfoSr5KvxQGiBsNKsG8/gviz/tq?tqx=out:csv&gid=0",R,S,B,M;
-if(!document.getElementById("cb-css")){var e=document.createElement("style");e.id="cb-css";e.textContent=".hz{display:none!important}.cb{font-family:inherit;color:#191919;margin-bottom:22px}.cb .w{margin:0 0 6px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.cb [class$=__qty]{display:flex!important;align-items:center!important;gap:10px;margin:0 0 8px}.cb [class$=__qty] label{margin:0!important;font-weight:600}.cb [class$=__qty] .form-control,.cb [name=ec-qty]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}.cb .d,.cb .r{display:flex!important;align-items:center!important;gap:6px;background:#fff!important;border:1px solid #e6e6e6;border-radius:10px;margin:3px 0;padding:3px 6px}.cb h2{display:block!important;text-align:left;margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.25}.cb h2 .tail{white-space:nowrap}.cb h2 .pr{margin-left:6px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}@media(max-width:520px){.cb h2{font-size:15px}.cb h2 .pr{font-size:13px;margin-left:5px}}.cb .k{margin:2px 0 8px;font-size:14px;font-weight:600}.cb .bar{flex:1;height:6px;background:#eee;border-radius:8px;overflow:hidden}.cb .bar i{display:block;height:6px;width:0;background:#333}.cb .nr{width:26px;height:26px;border-radius:50%;background:#333!important;color:#fff;display:grid!important;place-items:center;font-size:10px;font-weight:700;flex:none}.cb .bd{flex:1;min-width:0}.cb .nm{margin:0;font-weight:600;font-size:13px;line-height:1.15}.cb .mt,.cb .x,.cb .g{margin:0;color:#757575;font-size:11px;line-height:1.15}.cb .x.warn,.cb-need{color:#ff3b30;font-size:13px;font-weight:600;line-height:1.3}.cb-need{margin:8px 0}.cbk .details-product-option__title{font-size:15px!important}.cbk label,.cbk .form-control__radio{font-size:17px!important;line-height:1.35}.cbk .form-control__radio{min-height:32px;padding-top:5px;padding-bottom:5px}.cb .st{display:flex!important;align-items:center!important;background:#333!important;border-radius:99px;overflow:hidden;flex:none}.cb .st button,.cb .qn{display:grid!important;place-items:center!important;height:32px}.cb .st button{width:32px;background:#333!important;color:#fff!important;border:0!important;padding:0!important;margin:0!important;font-size:18px;box-shadow:none!important}.cb .st button:disabled{opacity:.35}.cb .qn{background:#fff!important;color:#191919!important;min-width:20px;font-weight:700}";document.head.appendChild(e)}
+if(!document.getElementById("cb-css")){var e=document.createElement("style");e.id="cb-css";e.textContent=".hz{display:none!important}.cb{font-family:inherit;color:#191919;margin-bottom:22px}.cb .w{margin:0 0 6px;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.cb [class$=__qty]{display:flex!important;align-items:center!important;gap:10px;margin:0 0 8px}.cb [class$=__qty] label{margin:0!important;font-weight:600}.cb [class$=__qty] .form-control,.cb [name=ec-qty]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;overflow:hidden!important}.cb .d,.cb .r{display:flex!important;align-items:center!important;gap:6px;background:#fff!important;border:1px solid #e6e6e6;border-radius:10px;margin:3px 0;padding:3px 6px}.cb h2{display:block!important;text-align:left;margin:0 0 2px;font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.25}.cb h2 .tail{white-space:nowrap}.cb h2 .pr{margin-left:6px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}@media(max-width:520px){.cb h2{font-size:15px}.cb h2 .pr{font-size:13px;margin-left:5px}}.cb .k{margin:2px 0 8px;font-size:14px;font-weight:600}.cb .bar{flex:1;height:6px;background:#eee;border-radius:8px;overflow:hidden}.cb .bar i{display:block;height:6px;width:0;background:#333}.cb .nr{width:26px;height:26px;border-radius:50%;background:#333!important;color:#fff;display:grid!important;place-items:center;font-size:10px;font-weight:700;flex:none}.cb .bd{flex:1;min-width:0}.cb .nm{margin:0;font-weight:600;font-size:13px;line-height:1.15}.cb .mt,.cb .x,.cb .g{margin:0;color:#757575;font-size:11px;line-height:1.15}.cb .x.warn,.cb-need{color:#ff3b30;font-size:13px;font-weight:600;line-height:1.3}.cb-need{margin:8px 0}.cb .ql{font-weight:600;margin:0;flex:none}.cb .cb-hide{display:none!important}.cbk,.cbk .product-details-module__content{font-size:17px}.cbk .details-product-option__title,.cbk .product-details-module__title{font-size:15px!important}.cbk label,.cbk .form-control__radio,.cbk .form-control__inline-label{font-size:17px!important;line-height:1.35}.cbk .form-control__radio{min-height:32px;padding-top:5px;padding-bottom:5px}.cb .st{display:flex!important;align-items:center!important;background:#333!important;border-radius:99px;overflow:hidden;flex:none}.cb .st button,.cb .qn{display:grid!important;place-items:center!important;height:32px}.cb .st button{width:32px;background:#333!important;color:#fff!important;border:0!important;padding:0!important;margin:0!important;font-size:18px;box-shadow:none!important}.cb .st button:disabled{opacity:.35}.cb .qn{background:#fff!important;color:#191919!important;min-width:20px;font-weight:700}";document.head.appendChild(e)}
 function rows(t){return t.trim().split(/\n/).map(function(l){return l.split('","').map(function(c){return c.replace(/"/g,"")})})}
 function load(){return M?Promise.resolve(M):fetch(U).then(function(r){return r.text()}).then(function(t){var a=rows(t),G=[],V=[],i,c,d;for(i=1;i<a.length;i++){c=a[i];if(!c[3])continue;d={n:+c[2],a:c[3],g:+c[4]||350,k:+c[5]||0};((c[1]||"").toLowerCase().indexOf("veg")==0?V:G).push(d)}M={w:a[1][0],G:G,V:V};return M})}
 function tx(e){return(e.innerText||"").replace(/\s+/g," ").trim()}
@@ -49,21 +49,37 @@ function dressKom(){
 }
 function pick5(){
  /* Required radios start empty, which leaves "Lūdzu, precizējiet nosacījumus" under the bag button.
-    Check 5 porcijas once, the same way a tap would, and leave a later 7-choice alone. */
- var k=kom(),a,i,r,d;
- if(!k)return;
+    Tap the 5 porcijas label once. A later choice of 7 is left alone. */
+ var k=kom(),a,i,r,lab;
+ if(!k||k.w.dataset.cb5)return;
  a=k.w.querySelectorAll("input[type=radio]");
- for(i=0;i<a.length;i++)if(a[i].checked)return;
- for(i=0;i<a.length;i++)if(/porcij/i.test(a[i].value||"")&&/^5\b/.test(a[i].value||"")){r=a[i];break}
+ for(i=0;i<a.length;i++)if(a[i].checked){k.w.dataset.cb5="1";return}
+ for(i=0;i<a.length;i++)if(/porcij/i.test(a[i].value||"")&&/(^|\s)5(\s|$)/.test(a[i].value||"")){r=a[i];break}
  if(!r)return;
- d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"checked");
- if(d&&d.set)d.set.call(r,true);else r.checked=true;
- r.dispatchEvent(new Event("input",{bubbles:true}));
- r.dispatchEvent(new Event("change",{bubbles:true}))
+ k.w.dataset.cb5="1";
+ lab=r.closest("label")||r.parentElement;
+ if(lab)lab.click();else r.click();
+ setTimeout(function(){if(!r.checked)delete k.w.dataset.cb5},500)
+}
+function nameQty(n){
+ /* "Daudzums:" is a title div, not a label, so the old label write never showed.
+    Replace that text in place. If Ecwid puts it back, the next pass writes it again. */
+ var w=document.createTreeWalker(n,NodeFilter.SHOW_TEXT),node,hit=0,t,own;
+ while((node=w.nextNode())){
+  if(node.parentElement&&node.parentElement.closest(".qs,.ql"))continue;
+  t=(node.nodeValue||"").replace(/\s+/g," ").trim();
+  if(!/^daudzums\s*:?$/i.test(t))continue;
+  node.nodeValue="Komplektu skaits";
+  hit=1
+ }
+ own=n.querySelector(".ql");
+ if(hit){if(own)own.remove();return}
+ if(!own){own=document.createElement("span");own.className="ql";n.insertBefore(own,n.firstChild)}
+ own.textContent="Komplektu skaits"
 }
 function trim(){var i;if(!S)return;S.m=lim();while(S.m&&sum()>S.m){i=S.items.length;while(i--)if(S.c[S.items[i].k]){S.c[S.items[i].k]--;break}}paint()}
 function setQty(q,n){var d;if(n<1)n=1;d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value");if(d&&d.set)d.set.call(q,String(n));else q.value=String(n);q.dispatchEvent(new Event("input",{bubbles:1}));q.dispatchEvent(new Event("change",{bubbles:1}))}
-function place(){var q=document.querySelector("[name=ec-qty]"),n,w,ui,lab,num,b;if(!q||!R||!S)return;n=q.closest("[class$=__qty]")||q.parentElement;S.qty=q;w=R.querySelector(".w");if(w&&w.nextElementSibling!=n)w.after(n);q.oninput=q.onchange=trim;q.readOnly=1;q.tabIndex=-1;q.setAttribute("inputmode","none");lab=n.querySelector("label");if(lab){lab.htmlFor="";lab.textContent="Komplektu skaits"}if(!n.querySelector(".qs")){ui=document.createElement("div");ui.className="qs";ui.innerHTML='<div class=st><button type=button data-q=m>−</button><b class=qn>1</b><button type=button data-q=p>+</button></div>';n.appendChild(ui);ui.onclick=function(e){var b=e.target.closest("button"),v,show;if(!b||!b.dataset.q)return;e.preventDefault();e.stopPropagation();v=+(q.value)||1;setQty(q,b.dataset.q=="p"?v+1:v-1);show=n.querySelector(".qs .qn");if(show)show.textContent=q.value;b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}}num=n.querySelector(".qs .qn");if(num)num.textContent=String(+(q.value)||1);b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}
+function place(){var q=document.querySelector("[name=ec-qty]"),n,w,ui,lab,num,b;if(!q||!R||!S)return;n=q.closest("[class$=__qty]")||q.parentElement;S.qty=q;w=R.querySelector(".w");if(w&&w.nextElementSibling!=n)w.after(n);q.oninput=q.onchange=trim;q.readOnly=1;q.tabIndex=-1;q.setAttribute("inputmode","none");nameQty(n);if(!n.querySelector(".qs")){ui=document.createElement("div");ui.className="qs";ui.innerHTML='<div class=st><button type=button data-q=m>−</button><b class=qn>1</b><button type=button data-q=p>+</button></div>';n.appendChild(ui);ui.onclick=function(e){var b=e.target.closest("button"),v,show;if(!b||!b.dataset.q)return;e.preventDefault();e.stopPropagation();v=+(q.value)||1;setQty(q,b.dataset.q=="p"?v+1:v-1);show=n.querySelector(".qs .qn");if(show)show.textContent=q.value;b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}}num=n.querySelector(".qs .qn");if(num)num.textContent=String(+(q.value)||1);b=n.querySelector("[data-q=m]");if(b)b.disabled=(+(q.value)||1)<=1}
 function setV(el,v){Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,"value").set.call(el,v);el.dispatchEvent(new Event("input",{bubbles:1}));el.dispatchEvent(new Event("change",{bubbles:1}))}
 function bag(a,suf,g){return a.map(function(d){return{k:g+d.n,c:d.n+suf,g:g,d:d}})}
 function items(k){
