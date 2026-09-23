@@ -82,9 +82,10 @@ function place(){var q=document.querySelector("[name=ec-qty]"),n,w,ui,lab,num,b;
 function setV(el,v){Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,"value").set.call(el,v);el.dispatchEvent(new Event("input",{bubbles:1}));el.dispatchEvent(new Event("change",{bubbles:1}))}
 function bag(a,suf,g){return a.map(function(d){return{k:g+d.n,c:d.n+suf,g:g,d:d}})}
 function items(k){
- /* Meat and vegetarian codes are plain numbers (1 2 3).
-    Mix keeps G and V so a meat 1 and a veg 1 stay distinct. */
- return k=="v"?bag(M.V,"","v"):k=="m"?bag(M.G,"G","g").concat(bag(M.V,"V","v")):bag(M.G,"","g")
+ /* The sheet files every order under the same "5 porcijas" / "7 porcijas" name.
+    G and V are the only mark that separates meat from vegetarian there.
+    Mix keeps both, so a meat 1 and a veg 1 stay distinct. */
+ return k=="v"?bag(M.V,"V","v"):k=="m"?bag(M.G,"G","g").concat(bag(M.V,"V","v")):bag(M.G,"G","g")
 }
 function sum(){var n=0,k;for(k in S.c)n+=S.c[k];return n}
 function money(t){var m=String(t||"").replace(/\s/g,"").match(/(\d+)[.,](\d{2})/);return m?+(m[1]+"."+m[2]):0}
@@ -169,17 +170,22 @@ function buyRoot(){
  return document.querySelector(".product-details .details-product-purchase")
 }
 function stopBuy(e){
- /* A 5-portion set with two dish codes must not reach the cart.
-    Block the bag control until the picked count matches the set. */
- var n;if(!S)return;
+ /* A short set must not reach the cart. The red line stays hidden
+    until this click, so the page does not scold anyone who is still choosing. */
+ var n,x;if(!S)return;
  n=e.target.closest("button,a,.details-product-purchase__add-to-bag");
  if(!isBag(n))return;
  if(full())return;
  e.preventDefault();
- e.stopImmediatePropagation()
+ e.stopImmediatePropagation();
+ if(S.nag)return;
+ S.nag=1;
+ paint();
+ x=R&&R.querySelector(".x");
+ if(x)x.scrollIntoView({block:"center",behavior:"smooth"})
 }
 if(!window.__chebuBuy){window.__chebuBuy=1;["pointerdown","mousedown","click"].forEach(function(ev){document.addEventListener(ev,stopBuy,true)})}
-function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=document.querySelectorAll("button,a,.details-product-purchase__add-to-bag"),cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0);if(q(".pr"))q(".pr").textContent=cost;q(".x").textContent=ok?"Gatavs":"Pievieno atbilstošu porciju skaitu";q(".x").classList.toggle("warn",!ok);needNote(!ok);S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=!ok}}}
+function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=document.querySelectorAll("button,a,.details-product-purchase__add-to-bag"),cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0);if(q(".pr"))q(".pr").textContent=cost;var yell=!ok&&S.nag;q(".x").textContent=ok?"Gatavs":yell?"Pievieno atbilstošu porciju skaitu":"";q(".x").classList.toggle("warn",yell);needNote(yell);S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,code.join(" "));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=false}}}
 function wk(w){w=w||"";return /ēdienkarte piegādei/i.test(w)?w:"Ēdienkarte piegādei "+w}
 function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2><span class=ph></span> <span class=tail>porcijas <span class=pr></span></span></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;watchKom();lift();dressKom();pick5();place();trim()}
 function boot(){var s=document.getElementById("cb-css");if(s)document.documentElement.appendChild(s);var h=location.href.match(/-p(\d+)|pid=(\d+)/),k=P[h&&(h[1]||h[2])];if(!k)return;if(document.querySelector(".cb")){place();watchKom();lift();dressKom();pick5();if(S&&lim()!=S.m)trim();else if(S)paint();return}if(B||!find(/NUMURUS/,"textarea"))return;B=1;load().then(function(){B=0;mount(k)}).catch(function(){B=0})}
