@@ -139,12 +139,18 @@ function syncPrice(){
 }
 function card(it){var d=it.d;return '<div class=d data-key='+it.k+'><b class=nr>'+it.c+'</b><div class=bd><p class=nm>'+d.a.replace(/&/g,"&amp;")+'</p><p class=mt>~'+d.g+'g · '+d.k+'kcal</p></div><div class=st><button type=button data-act=m>−</button><b class=qn>0</b><button type=button data-act=p>+</button></div></div>'}
 function full(){return !!(S&&S.m&&sum()==S.m)}
+function isAddLabel(n){
+ /* After the first add, Ecwid renames the button "Ielikt vēl".
+    That label has no "grozā", so a short set was slipping into the cart. */
+ var t=tx(n);
+ return /grozā/i.test(t)||/ielikt\s+v[eē]l/i.test(t)
+}
 function bagEl(){
- /* The visible "Ielikt grozā", not a hidden copy higher in the page. */
- var all=document.querySelectorAll("button"),i,b,fallback=null;
+ /* The visible add button, not a hidden copy higher in the page. */
+ var all=document.querySelectorAll("button,a,[role=button],.form-control__button"),i,b,fallback=null;
  for(i=0;i<all.length;i++){
   b=all[i];
-  if(!isBag(b)||!/grozā/i.test(tx(b)))continue;
+  if(!isBag(b)||!isAddLabel(b))continue;
   if(b.offsetParent||b.getClientRects().length)return b;
   if(!fallback)fallback=b
  }
@@ -163,11 +169,13 @@ function needNote(show){
  if(n.nextElementSibling!==bag)bag.before(n)
 }
 function isBag(n){
- /* The real "Ielikt grozā" can sit outside the purchase block once quantity is moved.
-    Match the button itself, wherever it is rendered. */
+ /* "Ielikt grozā" and "Ielikt vēl" both add the current set.
+    A short 5-pack or 7-pack must not pass either of them. */
  if(!n||n.closest(".cb,.qs"))return false;
+ if(n.closest(".ec-cart,.ec-minicart,.ec-cart-widget"))return false;
+ if(isAddLabel(n))return true;
  if(n.classList&&n.classList.contains("details-product-purchase__add-to-bag"))return true;
- return /grozā/i.test(tx(n))
+ return false
 }
 function buyRoot(){
  var btns=document.querySelectorAll("button,a,.details-product-purchase__add-to-bag"),i,b;
@@ -182,7 +190,7 @@ function stopBuy(e){
  /* A short set must not reach the cart. The red line stays hidden
     until this click, so the page does not scold anyone who is still choosing. */
  var n,x;if(!S)return;
- n=e.target.closest("button,a,.details-product-purchase__add-to-bag");
+ n=e.target.closest("button,a,[role=button],.form-control__button,.details-product-purchase__add-to-bag");
  if(!isBag(n))return;
  if(full())return;
  e.preventDefault();
@@ -193,8 +201,8 @@ function stopBuy(e){
  x=R&&R.querySelector(".x");
  if(x)x.scrollIntoView({block:"center",behavior:"smooth"})
 }
-if(!window.__chebuBuy){window.__chebuBuy=1;["pointerdown","mousedown","click"].forEach(function(ev){document.addEventListener(ev,stopBuy,true)})}
-function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=document.querySelectorAll("button,a,.details-product-purchase__add-to-bag"),cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0);if(q(".pr"))q(".pr").textContent=cost;var yell=!ok&&S.nag;q(".x").textContent=ok?"Gatavs":yell?"Pievieno atbilstošu porciju skaitu":"";q(".x").classList.toggle("warn",yell);needNote(yell);S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,packLine(code));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(/grozā/i.test(tx(b[i]))||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=false}}}
+if(!window.__chebuBuy){window.__chebuBuy=1;["pointerdown","pointerup","mousedown","mouseup","click","touchend"].forEach(function(ev){document.addEventListener(ev,stopBuy,true)})}
+function paint(){if(!R||!R.isConnected)return;var u=sum(),m=S.m,ok=full(),i,code=[],q=R.querySelector.bind(R),root=buyRoot(),b=document.querySelectorAll("button,a,.details-product-purchase__add-to-bag"),cost=syncPrice();q(".n").textContent=u+" / "+(m||"—");q(".bar i").style.width=(m?Math.min(100,u/m*100):0)+"%";q(".ph").textContent="Izvēlies savas "+(m||0);if(q(".pr"))q(".pr").textContent=cost;var yell=!ok&&S.nag;q(".x").textContent=ok?"Gatavs":yell?"Pievieno atbilstošu porciju skaitu":"";q(".x").classList.toggle("warn",yell);needNote(yell);S.items.forEach(function(it){var el=q('[data-key="'+it.k+'"]'),n=S.c[it.k]||0,j;el.querySelector(".qn").textContent=n;el.querySelector("[data-act=m]").disabled=!n;el.querySelector("[data-act=p]").disabled=!m||u>=m;for(j=0;j<n;j++)code.push(it.c)});q("[data-code]").textContent=code.join(" ")||"—";setV(S.num,packLine(code));for(i=0;i<b.length;i++){if(b[i].closest(".cb,.qs"))continue;if(isAddLabel(b[i])||(b[i].classList&&b[i].classList.contains("details-product-purchase__add-to-bag"))){var btn=b[i].tagName=="BUTTON"?b[i]:b[i].querySelector("button");if(btn)btn.disabled=false}}}
 function wk(w){w=w||"";return /ēdienkarte piegādei/i.test(w)?w:"Ēdienkarte piegādei "+w}
 function mount(k){if(document.querySelector(".cb"))return;var num=find(/NUMURUS/,"textarea"),por=find(/skaits/,"select"),keep=S?S.c:{},list=items(k),box=document.createElement("div"),html;if(!num)return;html=k=="m"?'<p class=g>Gaļa</p>'+list.filter(function(x){return x.g=="g"}).map(card).join("")+'<p class=g>Veģetārie</p>'+list.filter(function(x){return x.g=="v"}).map(card).join(""):list.map(card).join("");box.className="cb";box.innerHTML='<p class=w>'+wk(M.w)+'</p><h2><span class=ph></span> <span class=tail>porcijas <span class=pr></span></span></h2><div class=r><b class=n></b><div class=bar><i></i></div></div><p class=x></p><p class=k>Mana izvēle <b data-code>—</b></p>'+html;(por?por.w:num.w).after(box);num.w.classList.add("hz");S={items:list,c:keep,m:0,num:num.el,sel:por&&por.el,por:por&&por.w};R=box;box.onclick=function(e){var b=e.target.closest("button"),key;if(!b||!b.dataset.act)return;e.preventDefault();key=b.closest(".d").dataset.key;if(b.dataset.act=="p"){if(S.m&&sum()<S.m)S.c[key]=(S.c[key]||0)+1}else if(S.c[key])S.c[key]--;paint()};if(por)por.el.onchange=trim;watchKom();lift();dressKom();pick5();place();trim()}
 function boot(){var s=document.getElementById("cb-css");if(s)document.documentElement.appendChild(s);var h=location.href.match(/-p(\d+)|pid=(\d+)/),k=P[h&&(h[1]||h[2])];if(!k)return;if(document.querySelector(".cb")){place();watchKom();lift();dressKom();pick5();if(S&&lim()!=S.m)trim();else if(S)paint();return}if(B||!find(/NUMURUS/,"textarea"))return;B=1;load().then(function(){B=0;mount(k)}).catch(function(){B=0})}
